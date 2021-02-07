@@ -1,0 +1,39 @@
+spring:
+  profiles:
+    active: dev
+  webflux:
+    base-path: /Recipe
+
+server:
+  port: 18080
+
+web:
+  authorization-header: ENC(+T0Z5FoSDAznWzxul8jzTSl57HszcaIPogys/vzkoTf2JUBIOpaMrUcW2CaR7jHv)
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  r2dbc:
+    url: ENC(S/xSRoGJLyEDyrJKBn7ClfjHPu2TbIJX9RGG6CTGjXZ5gGO/lDdnT8ZRh3PRZ4UK+Oaaw4uZ16wLdiC2IlEzZ82KpmLAzzixQ6ZmfgTIklw=)
+    username: ENC(6Rj9jjslcygd9DANIrYxQs+KOCp0zxzpA6m6LcquS5zj6gNClk19TOzkVQFc+xcD)
+    password: ENC(p7pHPsCY1yQxl73yzDNmWqhZRxIATnv8dG5zMlBkysBhtYGZanADTi3xHHYBUpnN)
+    pool:
+      validation-query: SELECT 1
+logging:
+  config: deployment/configs/logback.xml
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  r2dbc:
+    url: ENC(S/xSRoGJLyEDyrJKBn7ClfjHPu2TbIJX9RGG6CTGjXZ5gGO/lDdnT8ZRh3PRZ4UK+Oaaw4uZ16wLdiC2IlEzZ82KpmLAzzixQ6ZmfgTIklw=)
+    username: ENC(QQAyVGePdYaC1qvbQKRLyx/tofcGWccoDJO7FnyTs0F3uIeqwdv/45oYEtcmhxwe)
+    password: ENC(lXuVe04rkccwE30KPea7TvXISoSOSreVAbUzIj4KBtxjfgkM8Dttj57/N+zQe+GG)
+    pool:
+      validation-query: SELECT 1
+logging:
+  config: config/logback.xml
