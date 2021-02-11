@@ -20,8 +20,7 @@ import org.springframework.web.server.WebFilterChain;
 import org.springframework.web.util.pattern.PathPattern;
 import org.springframework.web.util.pattern.PathPatternParser;
 
-import com.aaron.recipeweb.response.ResponseError;
-import com.aaron.recipeweb.util.JsonUtils;
+import com.aaron.recipeweb.util.ResponseUtils;
 
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
@@ -93,16 +92,7 @@ public class AuthorizationFilter implements WebFilter
 
     private Mono<Void> error(ServerHttpResponse response, HttpStatus status, String errorMessage)
     {
-        response.setStatusCode(status);
-
-        ResponseError body = ResponseError.builder()
-                .message(errorMessage)
-                .build();
-
-        byte[] bodyBytes = JsonUtils.toBytes(body);
-        DataBuffer dataBuffer = response.bufferFactory()
-                .wrap(bodyBytes);
-        Mono<DataBuffer> monoBody = Mono.just(dataBuffer);
+        Mono<DataBuffer> monoBody = ResponseUtils.errorResponseBody(status, errorMessage, response);
 
         return response.writeWith(monoBody);
     }

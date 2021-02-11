@@ -23,6 +23,9 @@ spring:
       validation-query: SELECT 1
 logging:
   config: deployment/configs/logback.xml
+log:
+  reactor:
+    level: INFO
 
 ---
 spring:
@@ -37,3 +40,6 @@ spring:
       validation-query: SELECT 1
 logging:
   config: config/logback.xml
+log:
+  reactor:
+    level: FINE
