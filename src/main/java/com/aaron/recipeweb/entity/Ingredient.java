@@ -1,10 +1,11 @@
 package com.aaron.recipeweb.entity;
 
-import java.math.BigDecimal;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,10 +21,11 @@ public class Ingredient
 {
     @Id
     @Column("recipe_id")
+    @JsonIgnore
     private Integer recipeId;
 
     @Column
-    private BigDecimal quantity;
+    private String quantity;
 
     @Column
     private String measurement;
@@ -31,6 +33,7 @@ public class Ingredient
     @Column
     private String ingredient;
 
+    @JsonProperty("comment_")
     @Column("comment_")
     private String comment;
 }
